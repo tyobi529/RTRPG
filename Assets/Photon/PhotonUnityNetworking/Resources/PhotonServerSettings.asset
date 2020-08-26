@@ -43,6 +43,10 @@ MonoBehaviour:
   - SetMasuObject
   - Attack_RPC
   - Move_RPC
+  - GenerateEnemy_RPC
+  - ChangeStage
+  - ChangeField
+  - LevelUp
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

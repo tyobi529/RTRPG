@@ -6,6 +6,13 @@ using UnityEngine;
 // MonoBehaviourではなくMonoBehaviourPunCallbacksを継承して、Photonのコールバックを受け取れるようにする
 public class LoginController : MonoBehaviourPunCallbacks
 {
+    //public GameObject EnemyGenerator;
+    public GameObject Enemy1;
+    public GameObject Enemy2;
+    public GameObject Enemy3;
+
+
+
     private void Start()
     {
         // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
@@ -30,20 +37,18 @@ public class LoginController : MonoBehaviourPunCallbacks
 
         }
 
+        else
+        {
+            //EnemyGenerator.SetActive(true);
+            Enemy1.SetActive(true);
+            Enemy2.SetActive(true);
+            Enemy3.SetActive(true);
+
+        }
+
 
 
     }
 
 
-
-
-    //時間差で生成する用
-    IEnumerator GameControllerGenerate()
-    {
-
-        PhotonNetwork.Instantiate("Player2", new Vector3(0, 0, 0), Quaternion.identity);
-        yield return new WaitForSeconds(2);
-
-        PhotonNetwork.Instantiate("GameController", new Vector3(0, 0, 0), Quaternion.identity);
-    }
 }

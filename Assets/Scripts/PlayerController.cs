@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
 
 
     //マスの幅（スクリーン）
-    private int width = 150;
-    private int height = 150;
+    //private int width = 150;
+    //private int height = 150;
 
 
     private Vector3 offset;
@@ -39,15 +39,22 @@ public class PlayerController : MonoBehaviour
 
     //タップしたかどうか
     //private bool istap = false;
-
+    public int maxhp = 100;
     public int hp = 100;
     public int power = 50;
     public float speed = 10f;
 
-    public float waitTime = 30f;
+    public int exp = 0;
+    public int levelup_exp = 100;
+
+    private float waitTime = 300f;
     public float time = 0f;
 
+    //１：勇者側
+    //２：魔王側
     public int playerId = 0;
+
+    //１：Enemy1
     public int objectId = 0;
 
     //public GameObject Canvas;
@@ -56,23 +63,16 @@ public class PlayerController : MonoBehaviour
 
 
 
+
+
+
     public bool canmove = true;
 
     void Start()
     {
-        //PlayerPos = new Vector3(0, 0, 0);
-        //transform.position = PlayerPos;
+
         gameController = GameObject.Find("GameController(Clone)").GetComponent<GameController>();
-        //gameController.MasuObject[masu_x, masu_y] = this.gameObject;
 
-        //firstPos_screen = new Vector3(width / 2 + width * masu_x, 284 + height / 2 + height * masu_y, 0);
-        //firstPos_world = Camera.main.ScreenToWorldPoint(firstPos_screen);
-        //firstPos_world = new Vector3(firstPos_world.x, firstPos_world.y, 0);
-        //transform.position = firstPos_world;
-        //Debug.Log(offset);
-
-        //masu_x = 6;
-        //masu_y = 2;
 
         firstPos_world = transform.position;
         firstPos_screen = Camera.main.WorldToScreenPoint(firstPos_world);
@@ -103,7 +103,9 @@ public class PlayerController : MonoBehaviour
         timeText.GetComponent<Text>().fontSize = 50;
         timeText.GetComponent<Text>().fontStyle = FontStyle.Bold;
 
-        timeText.GetComponent<Text>().color = Color.yellow;
+        //timeText.GetComponent<Text>().color = Color.yellow;
+        timeText.GetComponent<Text>().color = Color.black;
+
 
         time = waitTime / speed;
     }
@@ -120,7 +122,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log(masu_x);
-            //Debug.Log("aa");
             Debug.Log(masu_y);
         }
 
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerId == gameController.playerId && canmove)
         {
-            Debug.Log("aa");
+            //Debug.Log("aa");
             //最初の位置を保存
             firstPos_world = transform.position;
             //オブジェクトの座標をスクリーン座標へ
@@ -150,6 +151,8 @@ public class PlayerController : MonoBehaviour
             this.offset = firstPos_world - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, firstPos_screen.z));
 
 
+
+            //Debug.Log("Down");
         }
 
 
@@ -169,12 +172,16 @@ public class PlayerController : MonoBehaviour
             transform.position = currentPosition;
 
             GetComponent<SpriteRenderer>().color = Color.yellow;
+
+
+            //Debug.Log("Drag");
         }
 
     }
 
     void OnMouseUp()
     {
+
         if (playerId == gameController.playerId && canmove)
         {
             GetComponent<SpriteRenderer>().color = Color.white;
@@ -186,19 +193,9 @@ public class PlayerController : MonoBehaviour
             select_y = (int)((endPos_screen.y - 284f) / 150f);
 
 
-
-            //int[] move = new int[2];
-            //MasuCheck(SelectMasu()[0], SelectMasu()[1]);
-
-            //int[] select = new int[2] { SelectMasu()[0], SelectMasu()[1] };
-
             int move_x = Mathf.Abs(select_x - masu_x);
             int move_y = Mathf.Abs(select_y - masu_y);
 
-            //Debug.Log("masu_x" + masu_x);
-            //Debug.Log("masu_y" + masu_y);
-            //Debug.Log("select_x" + select_x);
-            //Debug.Log("select_y" + select_y);
 
             //範囲内
             if ((move_x == 0 && move_y == 1) || (move_x == 1 && move_y == 0))
@@ -208,30 +205,22 @@ public class PlayerController : MonoBehaviour
                 //オブジェクトが存在しなければ移動する。
                 if (gameController.MasuObject[select_x, select_y] == null)
                 {
-                    Debug.Log("移動");
+                    //Debug.Log("移動");
                     gameController.Move(masu_x, masu_y, select_x, select_y);
                     masu_x = select_x;
                     masu_y = select_y;
-                    //Move(masu_x, masu_y);
-                    //return;
 
-                    //canmove = false;
 
                 }
 
                 //対象が相手のオブジェクトなら攻撃
                 else if (playerId != gameController.MasuObject[select_x, select_y].GetComponent<PlayerController>().playerId)
                 {
-                    //攻撃
-                    Debug.Log("攻撃");
 
                     gameController.Attack(masu_x, masu_y, select_x, select_y);
 
                     transform.position = firstPos_world;
 
-                    //return;
-
-                    //canmove = false;
 
                 }
 
@@ -240,9 +229,6 @@ public class PlayerController : MonoBehaviour
                     transform.position = firstPos_world;
 
                 }
-
-
-                //StartCoroutine("Wait");
 
 
             }
@@ -260,15 +246,6 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-
-    //3秒停止する
-    //private IEnumerator Wait() //コルーチン関数の名前
-    //{
-    //    canmove = false;
-    //    yield return new WaitForSeconds(3.0f);
-    //    canmove = true;
-    //}
 
 
 

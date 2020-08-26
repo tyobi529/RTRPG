@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3617617405803726953}
   - component: {fileID: 3617617405803726954}
   m_Layer: 0
-  m_Name: Player2
+  m_Name: Maou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f0e50edada2ff4c768994400378c03cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 247b52ccb777c4aee87f3e11940b3451, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,10 +103,12 @@ MonoBehaviour:
   masu_y: 0
   select_x: 0
   select_y: 0
-  hp: 100
-  power: 50
-  speed: 10
-  waitTime: 30
+  maxhp: 100
+  hp: 1000
+  power: 300
+  speed: 100
+  exp: 0
+  levelup_exp: 100
   time: 0
   playerId: 0
   objectId: 0
@@ -130,7 +132,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.9736364, y: 1.0309091}
     newSize: {x: 1.0666667, y: 1.0666667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
