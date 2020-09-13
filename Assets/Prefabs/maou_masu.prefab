@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6923950749760810093}
   - component: {fileID: 6923950749760810092}
   m_Layer: 0
-  m_Name: masu
+  m_Name: maou_masu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 65d734058bb3842619a43c9a81e6d406, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8183079, g: 0.41429335, b: 0.9245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -44,18 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636be972aa95e44efbc2e32c83e4ff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Yusha: {fileID: 5495832507602792261, guid: c19bf726f3115412db1da7de38a3c8a7, type: 3}
+  hero_attackup: 0a0000000f000000
+  hero_defenceup: 0a0000000f000000
+  hero_speedup: 0a0000000f000000
+  enemy_attackup: 640000002800000046000000
+  enemy_defenceup: 460000002800000064000000
+  enemy_speedup: 460000006400000028000000
+  Hero: {fileID: 5495832507602792261, guid: c19bf726f3115412db1da7de38a3c8a7, type: 3}
   Enemy1: {fileID: 3617617405803726950, guid: 063859e4aa535467d92821eae6ab1045, type: 3}
   Enemy2: {fileID: 3617617405803726950, guid: af37c8cdc23cc4b868905597f8fdde56, type: 3}
   Enemy3: {fileID: 3617617405803726950, guid: f21fcb9f9ca3a41009de8d8c97b49a56, type: 3}
   Maou: {fileID: 3617617405803726950, guid: 52d58a73f01574302a96931fba9b1c98, type: 3}
-  cost: 0
-  max_cost: 30
-  summon_cost: 10
-  canSummon: 0
+  Siro: {fileID: 5495832507602792261, guid: ec128394863d64799815badfee224c4e, type: 3}
   playerId: 0
-  costText: {fileID: 0}
   MasuUpdateTime: 20
+  timeController: {fileID: 0}
+  doubleAttack: 0
 --- !u!114 &4249836403743426820
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3617617405803726950
+--- !u!1 &5495832507602792261
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3617617405803726952}
-  - component: {fileID: 3617617405803726951}
-  - component: {fileID: 3617617405803726953}
-  - component: {fileID: 3617617405803726954}
+  - component: {fileID: 5495832507602792267}
+  - component: {fileID: 5495832507602792260}
+  - component: {fileID: 5495832507602792266}
   m_Layer: 0
-  m_Name: Enemy3
+  m_Name: Siro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3617617405803726952
+--- !u!4 &5495832507602792267
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617617405803726950}
+  m_GameObject: {fileID: 5495832507602792261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3617617405803726951
+--- !u!212 &5495832507602792260
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617617405803726950}
+  m_GameObject: {fileID: 5495832507602792261}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,24 +71,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3cf7f48e7ab6246aaac12131aa7dceb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98aa6175961824e26b7477f94cdb441f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.0666667, y: 1.0666667}
+  m_Size: {x: 6.4, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3617617405803726953
+--- !u!114 &5495832507602792266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617617405803726950}
+  m_GameObject: {fileID: 5495832507602792261}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e0e7fd8e92af47eeaaf0ccd2c64bb79, type: 3}
@@ -99,49 +98,21 @@ MonoBehaviour:
   firstPos_screen: {x: 0, y: 0, z: 0}
   endPos_world: {x: 0, y: 0, z: 0}
   endPos_screen: {x: 0, y: 0, z: 0}
-  footer: 284
   masu_x: 0
   masu_y: 0
   select_x: 0
   select_y: 0
-  maxhp: 300
-  hp: 300
-  power: 50
-  speed: 50
+  maxhp: 500
+  hp: 500
+  attack: 0
+  defence: 0
+  speed: 0
   exp: 0
   levelup_exp: 100
-  time: 0
-  playerId: 2
-  objectId: 3
+  playerId: 1
+  objectId: 2
   hpText: {fileID: 0}
-  timeText: {fileID: 0}
   TimerPrefab: {fileID: 2589638234152956157, guid: fb9041b353a1d4de187cbbb7f82325ec,
     type: 3}
   timer: {fileID: 0}
-  canmove: 1
---- !u!61 &3617617405803726954
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617617405803726950}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8, y: 0.8}
-    newSize: {x: 1.0666667, y: 1.0666667}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  phase: 1

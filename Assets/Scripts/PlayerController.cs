@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
     //クリックした位置
     private Vector3 clickPos;
 
-
+    int yoko;
     //マスの幅（スクリーン）
-    //private int width = 150;
+    private int width;
     //private int height = 150;
+
+    private int footer;
+
 
 
     private Vector3 offset;
@@ -39,16 +42,18 @@ public class PlayerController : MonoBehaviour
 
     //タップしたかどうか
     //private bool istap = false;
-    public int maxhp = 100;
-    public int hp = 100;
-    public int power = 50;
-    public float speed = 10f;
+    public int maxhp;
+    public int hp;
+    public int attack;
+    public int defence;
+    public float speed;
+    
 
     public int exp = 0;
     public int levelup_exp = 100;
 
-    private float waitTime = 300f;
-    public float time = 0f;
+    //private float waitTime = 300f;
+    private float time = 1f;
 
     //１：勇者側
     //２：魔王側
@@ -59,17 +64,28 @@ public class PlayerController : MonoBehaviour
 
     //public GameObject Canvas;
     public GameObject hpText;
-    public GameObject timeText;
+
+    public GameObject TimerPrefab;
+    public GameObject timer;
+
+
+    private GameObject AttackText;
+    private GameObject DefenceText;
+    private GameObject SpeedText;
 
 
 
 
-
-
-    public bool canmove = true;
+    //public bool canmove = true;
+    public int phase = 1;
 
     void Start()
     {
+        FieldGenerator fieldGenerator = GameObject.Find("FieldGenerator").GetComponent<FieldGenerator>();
+        yoko = fieldGenerator.yoko;
+        width = Screen.width / yoko;
+
+        footer = GameObject.Find("FieldGenerator").GetComponent<FieldGenerator>().footer;
 
         gameController = GameObject.Find("GameController(Clone)").GetComponent<GameController>();
 
@@ -90,33 +106,43 @@ public class PlayerController : MonoBehaviour
         hpText.GetComponent<Text>().fontSize = 50;
         hpText.GetComponent<Text>().fontStyle = FontStyle.Bold;
 
-        hpText.GetComponent<Text>().color = Color.red;
+        hpText.GetComponent<Text>().color = Color.black;
 
-        //待機時間表示
-        timeText = new GameObject("timeText");
-
-        timeText.transform.parent = Canvas.transform;
-
-        timeText.AddComponent<Text>();
-
-        timeText.GetComponent<Text>().font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
-        timeText.GetComponent<Text>().fontSize = 50;
-        timeText.GetComponent<Text>().fontStyle = FontStyle.Bold;
-
-        //timeText.GetComponent<Text>().color = Color.yellow;
-        timeText.GetComponent<Text>().color = Color.black;
+        hpText.transform.position = new Vector3(width / 2 + width * masu_x, footer + width / 4 + width * masu_y, 0);
+        hpText.GetComponent<Text>().text = hp.ToString();
 
 
-        time = waitTime / speed;
+        timer = Instantiate(TimerPrefab) as GameObject;
+        timer.transform.SetParent(Canvas.transform);
+
+        timer.transform.position = new Vector3(width / 4 * 3 + width * masu_x, footer + width / 4 * 3 + width * masu_y, 0);
+        timer.SetActive(false);
+
+
+        if (gameController.playerId == 1 && playerId == 1)
+        {
+            AttackText = GameObject.Find("AttackText");
+            DefenceText = GameObject.Find("DefenceText");
+            SpeedText = GameObject.Find("SpeedText");
+        }
     }
 
     void Update()
     {
-        hpText.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 Pos = Camera.main.WorldToScreenPoint(transform.position);
+        hpText.transform.position = new Vector3(Pos.x, Pos.y - width / 2, 0);
         hpText.GetComponent<Text>().text = hp.ToString();
 
-        timeText.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - 0.4f, 0));
-        timeText.GetComponent<Text>().text = time.ToString();
+
+        if (gameController.playerId == 1 && playerId == 1)
+        {
+            //ステータスの更新
+            //HPText.GetComponent<Text>().text = "HP: " + hp + "/" + maxhp;
+            AttackText.GetComponent<Text>().text = "AT: " + attack;
+            DefenceText.GetComponent<Text>().text = "DE: " + defence;
+            SpeedText.GetComponent<Text>().text = "SP: " + speed;
+        }
+
 
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -125,24 +151,28 @@ public class PlayerController : MonoBehaviour
             Debug.Log(masu_y);
         }
 
-        if (!canmove)
+        if (phase == 0)
         {
-            time -= Time.deltaTime;
+            timer.GetComponent<Image>().fillAmount = time;
+            time -= Time.deltaTime * speed / 300;
 
             if (time < 0f)
             {
-                canmove = true;
-                time = waitTime / speed;
+                //canmove = true;
+                phase = 1;
+                time = 1f;
+                timer.SetActive(false);
+                //time = waitTime / speed;
             }
         }
+
     }
 
 
     void OnMouseDown()
     {
-        if (playerId == gameController.playerId && canmove)
+        if (playerId == gameController.playerId && phase == 1)
         {
-            //Debug.Log("aa");
             //最初の位置を保存
             firstPos_world = transform.position;
             //オブジェクトの座標をスクリーン座標へ
@@ -150,9 +180,8 @@ public class PlayerController : MonoBehaviour
             //ワールド空間においてオブジェクトとクリックした座標との差をとる
             this.offset = firstPos_world - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, firstPos_screen.z));
 
+            phase++;
 
-
-            //Debug.Log("Down");
         }
 
 
@@ -163,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (playerId == gameController.playerId && canmove)
+        if (playerId == gameController.playerId && phase == 2)
         {
             //マウスを離した点のスクリーン座標
             Vector3 currentfirstPos_screen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, firstPos_screen.z);
@@ -173,8 +202,7 @@ public class PlayerController : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.yellow;
 
-
-            //Debug.Log("Drag");
+            //phase++;
         }
 
     }
@@ -182,15 +210,15 @@ public class PlayerController : MonoBehaviour
     void OnMouseUp()
     {
 
-        if (playerId == gameController.playerId && canmove)
+        if (playerId == gameController.playerId && phase == 2)
         {
             GetComponent<SpriteRenderer>().color = Color.white;
 
             endPos_screen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, firstPos_screen.z);
 
             //選んだマス
-            select_x = (int)(endPos_screen.x / 150f);
-            select_y = (int)((endPos_screen.y - 284f) / 150f);
+            select_x = (int)(endPos_screen.x / width);
+            select_y = (int)((endPos_screen.y - footer) / width);
 
 
             int move_x = Mathf.Abs(select_x - masu_x);
@@ -199,53 +227,26 @@ public class PlayerController : MonoBehaviour
 
             //範囲内
             if ((move_x == 0 && move_y == 1) || (move_x == 1 && move_y == 0))
-            {
-
-
-                //オブジェクトが存在しなければ移動する。
-                if (gameController.MasuObject[select_x, select_y] == null)
-                {
-                    //Debug.Log("移動");
-                    gameController.Move(masu_x, masu_y, select_x, select_y);
-                    masu_x = select_x;
-                    masu_y = select_y;
-
-
-                }
-
-                //対象が相手のオブジェクトなら攻撃
-                else if (playerId != gameController.MasuObject[select_x, select_y].GetComponent<PlayerController>().playerId)
-                {
-
-                    gameController.Attack(masu_x, masu_y, select_x, select_y);
-
-                    transform.position = firstPos_world;
-
-
-                }
-
-                else
-                {
-                    transform.position = firstPos_world;
-
-                }
-
-
-            }
-
+                gameController.CheckMasu(masu_x, masu_y, select_x, select_y);
             else
-            {
-                Debug.Log("範囲外");
-
                 transform.position = firstPos_world;
 
-            }
 
+            phase = 1;
         }
 
 
 
     }
+
+
+    public void Destroy()
+    {
+        Destroy(hpText);
+        Destroy(timer);
+        Destroy(this.gameObject);
+    }
+
 
 
 

@@ -47,6 +47,20 @@ MonoBehaviour:
   - ChangeStage
   - ChangeField
   - LevelUp
+  - EnemyLevelUp
+  - ClearField
+  - CheckMasu_RPC
+  - Summon_RPC
+  - SendValue
+  - SendSpecialValue
+  - Sihogiri_RPC
+  - Nanamegiri_RPC
+  - Kaitengiri_RPC
+  - Hidarigiri_RPC
+  - Migigiri_RPC
+  - Sitagiri_RPC
+  - Uegiri_RPC
+  - GameStart
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

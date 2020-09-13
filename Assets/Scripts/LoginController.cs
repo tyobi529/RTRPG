@@ -11,6 +11,16 @@ public class LoginController : MonoBehaviourPunCallbacks
     public GameObject Enemy2;
     public GameObject Enemy3;
 
+    public GameObject HeroText;
+    public GameObject HPText;
+    public GameObject AttackText;
+    public GameObject SpeedText;
+
+    //勇者側は必殺ボタンを表示
+    public GameObject SpecialText;
+    public GameObject SpecialButton1;
+    public GameObject SpecialButton2;
+    public GameObject SpecialButton3;
 
 
     private void Start()
@@ -35,6 +45,7 @@ public class LoginController : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.Instantiate("GameController", new Vector3(0, 0, 0), Quaternion.identity);
 
+
         }
 
         else
@@ -43,6 +54,17 @@ public class LoginController : MonoBehaviourPunCallbacks
             Enemy1.SetActive(true);
             Enemy2.SetActive(true);
             Enemy3.SetActive(true);
+
+            HeroText.SetActive(false);
+            HPText.SetActive(false);
+            AttackText.SetActive(false);
+            SpeedText.SetActive(false);
+
+            //SpecialText.SetActive(false);
+            //SpecialButton1.SetActive(false);
+            //SpecialButton2.SetActive(false);
+            //SpecialButton3.SetActive(false);
+
 
         }
 
