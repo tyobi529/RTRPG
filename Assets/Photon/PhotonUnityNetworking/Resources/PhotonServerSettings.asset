@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: f67a5002-e604-47e9-ad34-b8de8712687e
+    AppIdRealtime: 78102ebf-7660-4503-b79e-bb6bc9696539
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 1.0
@@ -38,29 +38,22 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
-  - Move
-  - UpdateMasu
-  - SetMasuObject
-  - Attack_RPC
-  - Move_RPC
-  - GenerateEnemy_RPC
-  - ChangeStage
   - ChangeField
-  - LevelUp
-  - EnemyLevelUp
-  - ClearField
-  - CheckMasu_RPC
-  - Summon_RPC
-  - SendValue
-  - SendSpecialValue
-  - Sihogiri_RPC
-  - Nanamegiri_RPC
-  - Kaitengiri_RPC
-  - Hidarigiri_RPC
-  - Migigiri_RPC
-  - Sitagiri_RPC
-  - Uegiri_RPC
+  - SetPlayer
+  - Damage_RPC
+  - Damage
+  - Attack
+  - GenerateEnemy_RPC
+  - LevelUp_RPC
   - GameStart
+  - Move_RPC
+  - ChangeDirection_RPC
+  - Damage_Enemy
+  - Damage_Hero
+  - Attack_RPC
+  - MaouAttack
+  - MaouAttack_RPC
+  - Heal_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

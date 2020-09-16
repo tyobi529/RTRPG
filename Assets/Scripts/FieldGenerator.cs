@@ -7,38 +7,24 @@ public class FieldGenerator : MonoBehaviour
 
 
     //横の数
-    public int yoko = 6;
+    public int yoko = 7;
     public int tate = 7;
     private float width;
 
 
     //下の部分の高さ
-    public int footer = 284;
+    public int footer = 300;
 
     public GameObject MasuPrefab;
 
-    public GameObject Maou_Masu;
+    public Sprite NormalImage;
+    public Sprite SelectImage;
+    public Sprite AttackImage;
+
+    public Sprite PosImage;
 
 
-    //public GameObject Bed;
 
-    //public GameObject Takara;
-
-    //public GameObject Tokugi;
-
-    public Sprite NormalImgae;
-    public Sprite YushaImgae;
-
-    public Sprite BedImgae;
-
-    public Sprite HPImgae;
-    public Sprite PowerImgae;
-    public Sprite DefenceImgae;
-    public Sprite SpeedImgae;
-
-    public Sprite TakaraImgae;
-    public Sprite TokugiImgae;
-    public Sprite EXPImgae;
 
 
 
@@ -48,7 +34,6 @@ public class FieldGenerator : MonoBehaviour
 
 
 
-    //private int width = 150;
 
     // Start is called before the first frame update
     void Start()
@@ -56,18 +41,13 @@ public class FieldGenerator : MonoBehaviour
         width = Screen.width / yoko;
         Masu = new GameObject[yoko, tate];
 
-
         for (int i = 0; i < yoko; i++)
         {
             for (int j = 0; j < tate; j++)
             {
-                if (j >= 5)
-                    Masu[i, j] = Instantiate(Maou_Masu) as GameObject;
-                else
-                    Masu[i, j] = Instantiate(MasuPrefab) as GameObject;
 
-                //if (i == 2 && j == 0)
-                //    Masu[i, j].GetComponent<SpriteRenderer>().sprite = YushaImgae;
+                Masu[i, j] = Instantiate(MasuPrefab) as GameObject;
+
 
 
                 Masu[i, j].transform.parent = this.transform;
@@ -83,28 +63,23 @@ public class FieldGenerator : MonoBehaviour
     {
         //Destroy(Masu[Masu_x, Masu_y]);
 
+        //Debug.Log(Masu_x);
+        //Debug.Log(Masu_y);
+
         switch (Kind)
         {
+
             case 0:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = NormalImgae;
+                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = NormalImage;
                 break;
             case 1:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = BedImgae;
+                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = SelectImage;
                 break;
             case 2:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = PowerImgae;
+                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = AttackImage;
                 break;
             case 3:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = DefenceImgae;
-                break;
-            case 4:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = SpeedImgae;
-                break;
-            case 5:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = TakaraImgae;
-                break;
-            case 6:
-                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = TokugiImgae;
+                Masu[Masu_x, Masu_y].GetComponent<SpriteRenderer>().sprite = PosImage;
                 break;
             default:
                 Debug.Log("エラー");
@@ -112,11 +87,7 @@ public class FieldGenerator : MonoBehaviour
                     
         }
 
-        //Masu[Masu_x, Masu_y].transform.parent = this.transform;
-        //Masu[Masu_x, Masu_y].transform.position = ScreenToWorld(new Vector3(width / 2 + width * Masu_x, footer + width / 2 + width * Masu_y, 0));
-
-        //Masu[Masu_x, Masu_y].transform.position = Camera.main.ScreenToWorldPoint(new Vector3(75 + Masu_x * 150, 284 + Masu_y * 150, 0));
-        //Masu[Masu_x, Masu_y].transform.position = new Vector3(Masu[Masu_x, Masu_y].transform.position.x, Masu[Masu_x, Masu_y].transform.position.y, 0);
+       
     }
 
 

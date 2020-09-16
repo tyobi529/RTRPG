@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8650055716237196941
+--- !u!1 &8069454788475460975
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8650055716237196943}
-  - component: {fileID: 8650055716237196940}
-  - component: {fileID: 4249836403743426820}
+  - component: {fileID: 8069454788475460962}
+  - component: {fileID: 8069454788475460973}
+  - component: {fileID: 8069454788475460972}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8650055716237196943
+--- !u!4 &8069454788475460962
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8650055716237196941}
+  m_GameObject: {fileID: 8069454788475460975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,41 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8650055716237196940
+--- !u!114 &8069454788475460973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8650055716237196941}
+  m_GameObject: {fileID: 8069454788475460975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636be972aa95e44efbc2e32c83e4ff00, type: 3}
+  m_Script: {fileID: 11500000, guid: cc5eb0a46dfb143dd837280e3b6bbea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero_attackup: 0a0000000f000000
-  hero_defenceup: 0a0000000f000000
-  hero_speedup: 0a0000000f000000
-  enemy_attackup: 640000002800000046000000
-  enemy_defenceup: 460000002800000064000000
-  enemy_speedup: 460000006400000028000000
-  Hero: {fileID: 5495832507602792261, guid: c19bf726f3115412db1da7de38a3c8a7, type: 3}
-  Enemy1: {fileID: 3617617405803726950, guid: 063859e4aa535467d92821eae6ab1045, type: 3}
-  Enemy2: {fileID: 3617617405803726950, guid: af37c8cdc23cc4b868905597f8fdde56, type: 3}
-  Enemy3: {fileID: 3617617405803726950, guid: f21fcb9f9ca3a41009de8d8c97b49a56, type: 3}
-  Maou: {fileID: 3617617405803726950, guid: 52d58a73f01574302a96931fba9b1c98, type: 3}
-  Siro: {fileID: 5495832507602792261, guid: ec128394863d64799815badfee224c4e, type: 3}
-  playerId: 0
-  MasuUpdateTime: 20
-  timeController: {fileID: 0}
-  doubleAttack: 0
---- !u!114 &4249836403743426820
+  up_power_hero: 10
+  up_defence_hero: 10
+  up_speed_hero: 10
+  up_power_enemy: 10
+  up_defence_enemy: 10
+  Enemy: {fileID: 5603197854248909780, guid: 6a19a2ec6d6fb403084b8115d39eebfb, type: 3}
+--- !u!114 &8069454788475460972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8650055716237196941}
+  m_GameObject: {fileID: 8069454788475460975}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}

@@ -1,27 +1,11 @@
-﻿using System.Collections;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
 // MonoBehaviourではなくMonoBehaviourPunCallbacksを継承して、Photonのコールバックを受け取れるようにする
 public class LoginController : MonoBehaviourPunCallbacks
 {
-    //public GameObject EnemyGenerator;
-    public GameObject Enemy1;
-    public GameObject Enemy2;
-    public GameObject Enemy3;
-
-    public GameObject HeroText;
-    public GameObject HPText;
-    public GameObject AttackText;
-    public GameObject SpeedText;
-
-    //勇者側は必殺ボタンを表示
-    public GameObject SpecialText;
-    public GameObject SpecialButton1;
-    public GameObject SpecialButton2;
-    public GameObject SpecialButton3;
-
+    GameObject Hero;
 
     private void Start()
     {
@@ -40,37 +24,31 @@ public class LoginController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
 
-        //MasterClientにGameControllerの生成
+        FieldGenerator fieldGenerator = GameObject.Find("FieldGenerator").GetComponent<FieldGenerator>();
+
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
         {
-            PhotonNetwork.Instantiate("GameController", new Vector3(0, 0, 0), Quaternion.identity);
+            Vector2 v = Camera.main.ScreenToWorldPoint(new Vector2(750f / 2f, fieldGenerator.footer + 750f / fieldGenerator.yoko / 2f));
+
+
+            PhotonNetwork.Instantiate("GameController", v, Quaternion.identity);
+
+
 
 
         }
-
-        else
+        else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
         {
-            //EnemyGenerator.SetActive(true);
-            Enemy1.SetActive(true);
-            Enemy2.SetActive(true);
-            Enemy3.SetActive(true);
+            //Vector2 v = Camera.main.ScreenToWorldPoint(new Vector2(750f / 2f, fieldGenerator.footer + 750f / 2f));
+            Vector2 v = Camera.main.ScreenToWorldPoint(new Vector2(750f / 2f, fieldGenerator.footer + 750f + 750f / fieldGenerator.yoko / 2f));
 
-            HeroText.SetActive(false);
-            HPText.SetActive(false);
-            AttackText.SetActive(false);
-            SpeedText.SetActive(false);
+            //PhotonNetwork.Instantiate("Maou", v, Quaternion.identity);
 
-            //SpecialText.SetActive(false);
-            //SpecialButton1.SetActive(false);
-            //SpecialButton2.SetActive(false);
-            //SpecialButton3.SetActive(false);
+
 
 
         }
-
 
 
     }
-
-
 }
